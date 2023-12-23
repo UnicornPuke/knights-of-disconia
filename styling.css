@@ -1,24 +1,44 @@
 body{
     margin: 0;
     padding: 0;
+    display:grid;
+    justify-content: center;
+    height: 100%;
+    overflow-y:hidden
 }
 
 html{
     margin: 0;
-    padding: 0
+    padding: 0;
+    height: 100%;
 }
 
 p {
     font-family: monospace;
     color:white;
-    margin-left: 5px;
-    margin-top: 5px;
+    margin-left: 1vh;
+    margin-top: 1vh;
 }
 
 #display {
-    width: 100vh;
-    height: 100vh;
-    border-style: solid;
-    border-color: black;
-    border-width: 2px;
+    width: 166vh;
+    height: 100%;
+    display:flex;
+    background-size: cover;
+}
+#text-box {
+    width: 163vh;
+    height: 15vh;
+    align-self: flex-end;
+    margin-left: 1vh;
+    margin-bottom: 1vh;
+    background-size: cover;
+    background-image: url(images/textbox.png);
+}
+
+#text {
+    height: 9vh;
+    width: 155vh;
+    margin-left: 4vh;
+    margin-top: 3vh;
 }
