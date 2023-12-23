@@ -8,7 +8,7 @@ class Monster {
         this.name = name;
         this.prog = prog;
         this.bshp = bshp;
-        this.moves = _.sampleSize(moves, 5);
+        this.moves = moves;
         this.grv = bsgrv + ((this.level - 1) * this.prog);
         this.vbe = bsvbe + ((this.level - 1) * this.prog);
         this.ryt = bsryt + ((this.level - 1) * this.prog);
@@ -27,6 +27,17 @@ class Monster {
         this.vbe = bsvbe + ((l - 1) * this.prog);
         this.ryt = bsryt + ((l - 1) * this.prog);
         this.maxhp = bshp + ((l - 1) * this.prog );
+    }
+}
+class Player {
+    constructor() {
+        this.grv = 30
+        this.vbe = 30
+        this.ryt = 30
+        this.bop = 1.5
+        this.maxhp = 50
+        this.hp = this.maxhp
+        this.moves = []
     }
 }
 
@@ -62,11 +73,12 @@ const SpikeStab = new Move("Spike Stab", "Metal", 30, 90, 20, "")
 const Screech = new Move("Screech", "Metal", 30, 75, 15, "Target loses a bit of groove and vibe.");
 const BallChange = new Move("Ball Change", "Jazz", 35, 90, 20, "Target's accuracy has a 50% chance of being halved for one turn.")
 const Burst=  new Move("Burst", "Pop", 15, 95, 40, "")
-const Vibrato=  new Move("Vibrato", "Classical", 25, 80, 30, "Target loses a bit of groove.");
+const Vibrato=  new Move("Vibrato", "Classical", 0, 80, 30, "Target loses a bit of groove.");
 const Improvise = new Move("Improvise", "Jazz", 30, 90, 20, "Target's rythym has a 50% chance of being halved for one turn.")
 const SaxophoneSolo = new Move("Saxophone Solo", "Jazz", 70, 50, 25, "")
+const Soulful = new Move("Soulful", "Blues", 0, 80, 15, "User gains 25% of max hp.");
 
-const ChoreoCat = new Monster(25, 24, 1, 18, 30, 1, "Choreo Cat", 2, "Jazz", [BallChange, Screech, Burst, Vibrato, Improvise, SaxophoneSolo]);
+const ChoreoCat = new Monster(25, 24, 1, 18, 30, 1, "Choreo Cat", 2, "Jazz", [BallChange, Screech, Vibrato, Improvise, SaxophoneSolo]);
 const Guitarmadillo = new Monster(25, 24, 1, 18, 30, 1, "Guitarmadillo", 2, "Metal", [AFlatRiff, SpikeStab, Screech, Burst]);
 
 display = document.getElementById("text")
@@ -84,8 +96,22 @@ function waitEnter() {
     });
 }
 
-function combat(monsters) {
-    h = ""
+function combat(monsters, battle) {
+    adisplay.style.backgroundImage = "url(images/" + battle + "b.gif)"
+    // document.getElementById("text-box").style.visibility = "hidden"
+    adisplay.innerHTML+= "<img src='images/" + monsters[0].name + "1.gif' style='position: absolute; z-index:24;height: 40vh;top: 5vh; right: calc(50vw - 79vh); '>"
+    adisplay.innerHTML+= "<img src='images/platform.png' style='position: absolute; height: 48vh; top: 20vh; right: calc(50vw - 83vh);'>"
+    adisplay.innerHTML+= "<img src='images/platform.png' style='position: absolute; height: 48vh; bottom: 2vh; left: calc(50vw - 83vh)'>"
+    for(i in monsters) {
+        while (i.hp > 0 || Player.hp > 0) {
+            if (i.ryt > Player.ryt) {
+                console.log("hi")
+            }
+            else {
+                console.log("bye")
+            }
+        }
+    }
 }
 
 async function main() {
@@ -107,7 +133,7 @@ async function main() {
     await waitEnter();
     display.innerHTML = "<p><span style='color:#FA8072'><u><b>Coredlia:</b></u></span> Oh no! It's a wild Guitarmadillo!</p>"
     await waitEnter();
-    combat([Guitarmadillo]);
+    combat([Guitarmadillo], "meadow")
 }
 
 main()

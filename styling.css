@@ -27,13 +27,14 @@ p {
     background-size: cover;
 }
 #text-box {
-    width: 163vh;
+    width: 164vh;
     height: 15vh;
     align-self: flex-end;
     margin-left: 1vh;
     margin-bottom: 1vh;
     background-size: cover;
     background-image: url(images/textbox.png);
+    visibility: visible;
 }
 
 #text {
